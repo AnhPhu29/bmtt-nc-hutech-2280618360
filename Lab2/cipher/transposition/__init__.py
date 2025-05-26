@@ -1,1 +1,1 @@
-from .transpositon_cipher import TranspositionCipher
+from .transposition_cipher import TranspositionCipher

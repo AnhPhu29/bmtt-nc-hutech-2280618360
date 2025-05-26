@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
-from cipher.caesar import CaesarCipher
+from flask import Flask, render_template, request, json
+from Cipher.Caesar import CeasarCipher
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -14,17 +15,18 @@ def caesar():
 def caesar_encrypt():
     text = request.form['inputPlainText']
     key = int(request.form['inputKeyPlain'])
-    caesar = CaesarCipher()
-    encrypted_text = caesar.encrypt_text(text, key)
-    return f"text: {text}<br/>key: {key}<br/>encrypted text: {encrypted_text}"
+    Caesar = CeasarCipher()
+    encrypted_text = Caesar.encrypt_text(text, key)
+    return f"text: {text}<br/>key:{key}<br/>enrypted text:{encrypted_text}"
 
 @app.route("/decrypt", methods=['POST'])
 def caesar_decrypt():
     text = request.form['inputCipherText']
-    key = int(request.form['inputKeyCipher'])
-    caesar = CaesarCipher()
-    decrypted_text = caesar.decrypt_text(text, key)
-    return f"text: {text}<br/>key: {key}<br/>decrypted text: {decrypted_text}"
+    key = int(request.form['inputKeyPlain'])
+    Caesar = CeasarCipher()
+    decrypted_text = Caesar.decrypt_text(text, key)
+    return f"text: {text}<br/>key:{key}<br/>derypted text:{decrypted_text}"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050, debug=True)
+    
